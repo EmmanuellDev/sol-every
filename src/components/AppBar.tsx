@@ -26,10 +26,21 @@ export const AppBar: FC = (props)=> {
                 <LuMenu />
               </i>
               </button>
-            </div>
+              </div>
+              <div className='hs-collapse mx-auto mt-2 hidden grow basis-full items-center justify-center transition-all duration-300 lg:mt-0 lg:flex lg:basis-auto' id="mobilemenu">
+                <ul id='navbar-navlist' className='navbar-nav'>
+                  {menu.map((list, index) => (
+                    <li key={index} className='nav-item'>
+                      <a className='nav-link' href={list.link}>{list.name}</a>
+                      </li>
+                  ))}
+                </ul>
+              </div>
+              <NetworkSwitcher />
           </nav>
         </div>
       </header>
+      {props.children}
     </div>
   )
 
