@@ -39,11 +39,11 @@ export const Footer: FC = () => {
             </ul>
           </div>
           <div className='col-span-2 sm:col-span-1 lg:col-span-3'>
-            <div className='flex flex-col gap-3'>
-              <h5 className='text-default-200 mb-2 font-medium lg:text-lg xl:text-xl'>My Account</h5>
+          <ul className='flex flex-col gap-3'>
+              <h5 className='text-default-200 mb-2 font-medium lg:text-lg xl:text'>My Account</h5>
               {
                 menuTwo.map((item, index) => (
-                  <li key={index}>
+                  <li>
                     <a href='#' className='text-default-300 text-base transition-all hover:text-white'>
                       <i data-lucide="gauge-circle" className='mr-2 inline-block h-4 w-4'></i>
                       {item}
@@ -51,7 +51,7 @@ export const Footer: FC = () => {
                   </li>
                 ))
               }
-            </div>
+            </ul>
           </div>
           <div className='col-span-2 lg:col-span-6'>
             <div className='bg-primary/20 rounded-xl'>
@@ -93,7 +93,7 @@ export const Footer: FC = () => {
         <p className='text-default-400 text-base font-medium'>Solana Soul - 
           <a href='#'> Design & Created{" "}
             <i data-lucide="heart" className='inline h-4 w-4 fill-red-500 text-red-500'></i>
-            by Emmanuel : Team Fortiv
+            by Emmanuel
           </a>
         </p>
         <p className='text-default-400 text-base font-medium'>
