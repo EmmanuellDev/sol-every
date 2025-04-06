@@ -20,8 +20,8 @@ const Home: NextPage = (props) => {
       </Head>
 
       <HomeView setOpenCreateModal = {setOpenCreateModal}/>
-      {/* <ToolView setOpenAirdrop = {setOpenAirdrop} setOpenContact = {setOpenContact} setOpenCreateModal = {setOpenCreateModal} setOpenSendTransaction = {setOpenSendTransaction} setOpenTokenMetaData = {setOpenTokenMetaData}/>
-      <FeatureView setOpenAirdrop = {setOpenAirdrop} setOpenContact = {setOpenContact} setOpenCreateModal = {setOpenCreateModal} setOpenSendTransaction = {setOpenSendTransaction} setOpenTokenMetaData = {setOpenTokenMetaData}/>
+      <ToolView setOpenAirdrop = {setOpenAirdrop} setOpenContact = {setOpenContact} setOpenCreateModal = {setOpenCreateModal} setOpenSendTransaction = {setOpenSendTransaction} setOpenTokenMetaData = {setOpenTokenMetaData}/>
+      {/* <FeatureView setOpenAirdrop = {setOpenAirdrop} setOpenContact = {setOpenContact} setOpenCreateModal = {setOpenCreateModal} setOpenSendTransaction = {setOpenSendTransaction} setOpenTokenMetaData = {setOpenTokenMetaData}/>
       <OfferView />
       <FaqView />
 

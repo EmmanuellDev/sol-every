@@ -38,18 +38,19 @@ export const HomeView: FC = ({ setOpenCreateModal }) => {
                     <div className="marquee-hero flex min-h-full flex-shrink-0 flex-col items-center justify-around gap-6">
                       {
                         ["img-9", "img-14", "img-21", "img-22", "img-10"].map((image, index) => (
-                          <img key={index} src={`assets/images/ai/${image}.jpg`} alt="img" className="aspect-1 h-full w-60 rounded-xl object-cover"/>
+                          <img key={index} src={`assets/images/ai/${image}.jpg`} alt="" className="aspect-1 h-full w-60 rounded-xl object-cover"/>
                         ))
                       }
                     </div>
                     <div aria-hidden="true" className="marquee-hero flex min-h-full flex-shrink-0 flex-col items-center justify-around gap-6">
                       {
                         ["img-9", "img-14", "img-21", "img-22", "img-10"].map((image, index) => (
-                          <img key={index} src={`assets/images/ai/${image}.jpg`} alt="img" className="aspect-1 h-full w-60 rounded-xl object-cover"/>
+                          <img key={index} src={`assets/images/ai/${image}.jpg`} alt="" className="aspect-1 h-full w-60 rounded-xl object-cover"/>
                         ))
                       }
                     </div>
-                    <div className="marquee-reverse m-auto flex flex-col gap-6 overflow-hidden">
+                  </div>
+                  <div className="marquee-reverse m-auto flex flex-col gap-6 overflow-hidden">
                       <div className="marquee-hero flex min-h-full flex-shrink-0 flex-col items-center justify-around gap-6">
                       {
                         ["img-6", "img-10", "img-11", "img-12", "img-13"].map((image, index) => (
@@ -57,15 +58,14 @@ export const HomeView: FC = ({ setOpenCreateModal }) => {
                         ))
                       }
                       </div>
-                    </div>
-                    <div aria-hidden="true" className="marquee-hero flex min-h-full flx-shrink-0 flex-col items-center justify-around gap-6">
+                      <div aria-hidden="true" className="marquee-hero flex min-h-full flex-shrink-0 flex-col items-center justify-around gap-6">
                       {
                         ["img-6", "img-10", "img-11", "img-12", "img-13"].map((image, index) => (
                           <img key={index} src={`assets/images/ai/${image}.jpg`} alt="" className="aspect-1 h-full w-60 rounded-xl object-cover"/>
                         ))
                       }
                       </div>
-                  </div>
+                    </div>
                 </div>
               </div>
             </div>
