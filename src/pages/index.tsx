@@ -21,11 +21,11 @@ const Home: NextPage = (props) => {
 
       <HomeView setOpenCreateModal = {setOpenCreateModal}/>
       <ToolView setOpenAirdrop = {setOpenAirdrop} setOpenContact = {setOpenContact} setOpenCreateModal = {setOpenCreateModal} setOpenSendTransaction = {setOpenSendTransaction} setOpenTokenMetaData = {setOpenTokenMetaData}/>
-      {/* <FeatureView setOpenAirdrop = {setOpenAirdrop} setOpenContact = {setOpenContact} setOpenCreateModal = {setOpenCreateModal} setOpenSendTransaction = {setOpenSendTransaction} setOpenTokenMetaData = {setOpenTokenMetaData}/>
-      <OfferView />
+       <FeatureView setOpenAirdrop = {setOpenAirdrop} setOpenContact = {setOpenContact} setOpenCreateModal = {setOpenCreateModal} setOpenSendTransaction = {setOpenSendTransaction} setOpenTokenMetaData = {setOpenTokenMetaData}/>
+       <OfferView />
       <FaqView />
 
-      {openCreateModal && (
+      {/* {openCreateModal && (
         <div className='new_loader relative h-full bg-slate-900'>
           <CreateView setOpenCreateModal={setOpenCreateModal} />
         </div>

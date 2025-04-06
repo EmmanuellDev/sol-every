@@ -73,11 +73,26 @@ export const ToolView: FC = ({
                     </div>
                     <h3 className='text-default-200 text-xl font-medium'>{tool.name}</h3>
                   </div>
-                  <a className='text-primary group'></a>
+                  <a className='text-primary group relative inline-flex items-center gap-2'>
+                    <span className='bg-primary/80 absolute -bottom-0 h-px w-7/12 rounded transition-all duration-500 group-hover:w-full'>
+                    </span>
+                    Select and try
+                    <i data-lucide={"move-right"}>
+                      <LuArrowRightFromLine />
+                    </i>
+                  </a>
                 </div>
               </div>
             ))
           }
+        </div>
+        <div className='mt-10 flex justify-center'>
+          <a className='hover:bg-primary-hover bg-primary inline-flex items-center justify-center gap-2 rounded-full px-6 py-2 text-white transition-all duration-500'>
+            More Tools
+            <i>
+              <IoIosArrowRoundForward />
+            </i>
+          </a>
         </div>
       </div>
     </section>
