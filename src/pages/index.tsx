@@ -35,7 +35,7 @@ const Home: NextPage = (props) => {
           <TokenMetadata setOpenTokenMetaData={setOpenTokenMetaData} />
         </div>
       )}
-      {openContact && (
+       {openContact && (
         <div className='new_loader relative h-full bg-slate-900'>
           <ContactView setOpenContact={setOpenContact} />
         </div>
