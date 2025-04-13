@@ -15,8 +15,8 @@ import { InputView } from "../index";
 
 export const CreateView: FC = ({ setOpenCreateModal }) => {
   const { connection } = useConnection();
-  const { publickey, sendTransaction } = useWallet;
-  const { NetworkConfiguration } = useNetworkConfiguration();
+  const { publicKey, sendTransaction } = useWallet();
+  const { networkConfiguration } = useNetworkConfiguration();
 
   const [ tokenUri, setTokenUri ] = useState("");
   const [ tokenMintAddress, setTokenMintAddress ] = useState("");
@@ -40,7 +40,7 @@ export const CreateView: FC = ({ setOpenCreateModal }) => {
       const mintKeypair = Keypair.generate();
       const tokenATA = await getAssociatedTokenAddress(
         mintKeypair.publicKey,
-        publickey
+        publicKey
       );
 
       try {
@@ -54,9 +54,9 @@ export const CreateView: FC = ({ setOpenCreateModal }) => {
             mintKeypair.publicKey.toBuffer(),          
           ], PROGRAM_ID)[0],
           mint: mintKeypair.publicKey,
-          mintAuthority: publickey,
-          payer: publickey,
-          updateAuthority: publickey,
+          mintAuthority: publicKey,
+          payer: publicKey,
+          updateAuthority: publicKey,
         },
       {
         createMetadataAccountArgsV3: {
@@ -76,7 +76,7 @@ export const CreateView: FC = ({ setOpenCreateModal }) => {
 
       const createNewTokenTransaction = new Transaction().add(
         SystemProgram.createAccount({
-          fromPubkey: publickey,
+          fromPubkey: publicKey,
           newAccountPubkey: mintKeypair.publicKey,
           space: MINT_SIZE,
           lamports: lamports + 10000000,
@@ -85,20 +85,20 @@ export const CreateView: FC = ({ setOpenCreateModal }) => {
         createInitializeMintInstruction(
           mintKeypair.publicKey,
           Number(token.decimals),
-          publickey,
-          publickey,
+          publicKey,
+          publicKey,
           TOKEN_PROGRAM_ID
         ),
         createAssociatedTokenAccountInstruction(
-          publickey,
+          publicKey,
           tokenATA,
-          publickey,
+          publicKey,
           mintKeypair.publicKey,
         ),
         createMintToInstruction(
           mintKeypair.publicKey,
           tokenATA,
-          publickey,
+          publicKey,
           Number(token.amount) * Math.pow(10, Number(token.decimals)),
         ),
         createMetadataInstruction,
@@ -123,7 +123,7 @@ export const CreateView: FC = ({ setOpenCreateModal }) => {
         notify({ type: "error", message: "Token Creation Failed, try later"});
       }
       setIsLoading(false);
-    }, [connection, publickey, sendTransaction]);
+    }, [connection, publicKey, sendTransaction]);
 
     const handleImageChange = async(event) => {
       const file = event.target.files[0];
@@ -200,7 +200,7 @@ export const CreateView: FC = ({ setOpenCreateModal }) => {
         <ClipLoader />
       </div>
     )}
-    { tokenMintAddress ? (
+    {!tokenMintAddress ? (
       <section className='flex w-full items-center py-6 px-0 lg:h-screen lg:p-10'>
         <div className='container'>
           <div className='bg-default-950/40 mx-auto max-w-5xl overflow-hidden rounded-2xl backdrop-blur-2xl'>
@@ -262,30 +262,54 @@ export const CreateView: FC = ({ setOpenCreateModal }) => {
     <section className='flex w-full items-center py-6 px-0 lg:h-screen lg:p-10'>
     <div className='container'>
       <div className='bg-default-950/40 mx-auto max-w-5xl overflow-hidden rounded-2xl backdrop-blur-2xl'>
-      <Branding image='auth-img' title="To Build your solana token Creator" message="Try and create your first ever solana project, and if you want to master blockchain development then check the course" />
+      <div className='grid gap-10 lg:grid-cols-2'>
+      <Branding image="auth-img" title="To Build your solana token creator" message="Try and create your first ever solana project, and if you want to master blockchain development then check the course" />
       <div className='lg:ps-0 flex h-full flex-col p-10'>
         <div className='pb-10'>
           <a className='flex'>
-            <img src='assets/images/logo1.png' alt='logo' className='h-10' />
+            <img src='assets/images/logo1.png' alt='logo' className='h-10'/>
           </a>
         </div>
         <div className='my-auto pb-6 text-center'>
           <h4 className='mb-4 text-2xl font-bold text-white'>Link to your new token</h4>
-          <p className='text-default-300 mx-auto mb-5 max-w-sm'>Your Solana token is Successfully created, check now explorer</p>
+          <p className='text-default-300 mx-auto mb-5 max-w-sm'>Your Solana token is Successfully created, Check the explorer now</p>
           <div className='flex items-start justify-center'>
-            <img src={token.image || "assets/images/logo1.png"} alt='' className='h-20' />
-            <div className='mt-5 w-full text-center'>
-              <p className='text-default-300 text-base font-medium leading-6'>
-                <InputView name={"Token Address"} placeholder={tokenMintAddress} />
-              </p>
+            <img src={token.image || "assets/images/logo1.png"} alt='' className='h-40' />
+          </div>
+          <div className='mt-5 w-full text-center'>
+            <p className='text-default-300 text-base font-medium leading-6'>
+              <InputView name={"Token Address"} placeholder={tokenMintAddress} />
+              <span className='cursor-pointer' onClick={() => navigator.clipboard.writeText(tokenMintAddress)}>
+                Copy
+              </span>
+            </p>
+            <div className='mb-6 text-center'>
+              <a href={`https://explorer.solana.com/address/${tokenMintAddress}?cluster=${networkConfiguration}`} target='_blank' rel='noreferrer' className='bg-primary-600/90 hover:bg-primary-600 group mt-5 inline-flex w-full items-center justify-center rounded-lg px-6 py-2 text-white backdrop-blur-2xl transition-all duration-500'>
+              <span className='fw-bold'>View On Solana</span>
+              </a>
             </div>
+
+            <div>
+                <div className='text-center'>
+                  <ul className='flex flex-wrap items-center justify-center gap-2'>
+                    <li>
+                      <a onClick={() => setOpenCreateModal(false)} className='group inline-flex h-10 w-10 items-center justify-center rounded-lg bg-white/20 backdrop-blur-2xl transition-all duration-500 hover:bg-blue-600/60'>
+                        <i className='text-2xl text-white group-hover:text-white'>
+                          <AiOutlineClose />
+                        </i>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
           </div>
         </div>
+      </div>
       </div>
       </div>
     </div>
 </section>
   )}
     </>
-  )
+  );
 };
