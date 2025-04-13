@@ -40,17 +40,12 @@ const Home: NextPage = (props) => {
           <ContactView setOpenContact={setOpenContact} />
         </div>
       )}
-      {/*{openCreateModal && (
-        <div className='new_loader relative h-full bg-slate-900'>
-          <CreateView setOpenCreateModal={setOpenCreateModal} />
-        </div>
-      )}
       {openAirdrop && (
         <div className='new_loader relative h-full bg-slate-900'>
           <AirdropView setOpenAirdrop={setOpenAirdrop} />
         </div>
       )}
-      {openSendTransaction && (
+      {/*{openSendTransaction && (
         <div className='new_loader relative h-full bg-slate-900'>
           <DonateView setOpenSopenSendTransaction={setOpenSendTransaction} />
         </div>
