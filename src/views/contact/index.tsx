@@ -9,11 +9,11 @@ export const ContactView: FC = ({ setOpenContact }) => {
 
   const [state, handleSubmit] = useForm('xblgwwpq');
   if (state.succeeded) {
+    setOpenContact(false);
     notify({
     type: "success",
     message: "Thanks for sending your message!, will get back to you soon",
   });
-  setOpenContact(false);
   }
 
     const CloseModal = () => (
@@ -53,13 +53,13 @@ export const ContactView: FC = ({ setOpenContact }) => {
             <ValidationError prefix='Email' field='email' errors={state.errors} />
             <textarea name='message' id='message' rows="6" className='border-default-200 relative block w-full rounded border-white/10 bg-transparent py-1.5 px-3 text-white/80 focus:border-white/25 focus:ring-transparent' placeholder='message'></textarea>
             <ValidationError prefix='Message' field='message' errors={state.errors} />
-          </form>
             <div className='mb-6 text-center'>
               <button type='submit' disabled={state.submitting} className='bg-primary-600/90 hover:bg-primary-600 group mt-5 inline-flex w-full items-center justify-center rounded-lg px-6 py-2 text-white backdrop-blur-2xl transition-all duration-500'>
                 <span className='fw-bold'>Send Message</span>
               </button>
               <CloseModal />
             </div>
+            </form>
           </div>
           </div>
         </div>

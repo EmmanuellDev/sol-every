@@ -95,14 +95,17 @@ export const DonateView: FC = ({ setOpenSendTransaction }) => {
             }
           </h4>
           <p className='text-default-300 mx-auto mb-5 max-w-sm'>
-            Now you can claim your 1 Airdrop, and use to test and create token in our platform
+            Now you can Donate, to the creator for the tools developers
           </p>
           <div className='flex items-start justify-center'>
             <img src='assets/images/logout.svg' alt='' className='h-40' />
           </div>
+          <div className='text-start'>
+            <InputView name="Amount" placeholder="amount" clickhandle={(e) => setAmount(e.target.value)}/>
+          </div>
             <div className='mb-6 text-center'>
               <button onClick={onClick} disabled={!publicKey} className='bg-primary-600/90 hover:bg-primary-600 group mt-5 inline-flex w-full items-center justify-center rounded-lg px-6 py-2 text-white backdrop-blur-2xl transition-all duration-500'>
-                <span className='fw-bold'>Airdrop 1</span>
+                <span className='fw-bold'>Donate</span>
               </button>
               <CloseModal />
             </div>
