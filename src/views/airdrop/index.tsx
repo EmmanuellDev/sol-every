@@ -55,11 +55,12 @@ export const AirdropView: FC = ({ setOpenAirdrop }) => {
         description: error?.message,
         txid: signature,
       });
+      console.log("error", `Airdrop failed: ${error?.message}`, signature);
     }
   }, [publicKey, connection, getUserSOLBalance]);
 
       const CloseModal = () => (
-        <a onClick={() => setOpenContact(false)} className='group mt-4 inline-flex h-10 w-10 items-center justify-center rounded-lg bg-white/20 backdrop-blur-2xl transition-all duration-500 hover:bg-blue-600/60'>
+        <a onClick={() => setOpenAirdrop(false)} className='group mt-4 inline-flex h-10 w-10 items-center justify-center rounded-lg bg-white/20 backdrop-blur-2xl transition-all duration-500 hover:bg-blue-600/60'>
           <i className='text-2xl text-white group-hover:text-white'>
             <AiOutlineClose />
           </i>
@@ -81,28 +82,24 @@ export const AirdropView: FC = ({ setOpenAirdrop }) => {
         </div>
         <div className='my-auto pb-6 text-center'>
           <h4 className='mb-4 text-2xl font-bold text-white'>
-            Send email to us for more details
+            {
+              wallet && (
+                <p>SOL Balance: {(balance || 0).toLocaleString()}</p>
+              )
+            }
           </h4>
           <p className='text-default-300 mx-auto mb-5 max-w-sm'>
-            Send your message, so we can provide you more details
+            Now you can claim your 1 Airdrop, and use to test and create token in our platform
           </p>
-        <div className='text-start'>
-          <form onSubmit={handleSubmit}>
-            <div className='mb-4'>
-              <label htmlFor='email' className='text-base/normal text-default-200 mb-2 block font-semibold'>Email</label>
-              <input type='email' id='email' name='email' className='border-default-200 block w-full rounded border-white/10 bg-transparent py-1.5 px-3 text-white/80 focus:border-white/25 focus:ring-transparent' placeholder='email'></input>
-            </div>
-            <ValidationError prefix='Email' field='email' errors={state.errors} />
-            <textarea name='message' id='message' rows="6" className='border-default-200 relative block w-full rounded border-white/10 bg-transparent py-1.5 px-3 text-white/80 focus:border-white/25 focus:ring-transparent' placeholder='message'></textarea>
-            <ValidationError prefix='Message' field='message' errors={state.errors} />
-          </form>
+          <div className='flex items-start justify-center'>
+            <img src='assets/images/logout.svg' alt='' className='h-40' />
+          </div>
             <div className='mb-6 text-center'>
-              <button type='submit' disabled={state.submitting} className='bg-primary-600/90 hover:bg-primary-600 group mt-5 inline-flex w-full items-center justify-center rounded-lg px-6 py-2 text-white backdrop-blur-2xl transition-all duration-500'>
-                <span className='fw-bold'>Send Message</span>
+              <button onClick={onClick} disabled={!publicKey} className='bg-primary-600/90 hover:bg-primary-600 group mt-5 inline-flex w-full items-center justify-center rounded-lg px-6 py-2 text-white backdrop-blur-2xl transition-all duration-500'>
+                <span className='fw-bold'>Airdrop 1</span>
               </button>
               <CloseModal />
             </div>
-          </div>
           </div>
         </div>
       </div>
